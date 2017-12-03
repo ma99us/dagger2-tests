@@ -21,8 +21,8 @@ public class LegacyLogger {
     @Provides
     @NotNull
     @Singleton
-    public LegacyLogger provideLogger(){
-        return new LegacyLogger();
+    public LegacyLogger provideInstance(){
+        return getInstance();
     }
 
     public String getData(){

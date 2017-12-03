@@ -3,7 +3,7 @@ package com.igt.log;
 public class SiteLogger extends LegacyLogger {
 
     @Override
-    public LegacyLogger provideLogger() {
+    public LegacyLogger provideInstance() {
         return new SiteLogger();
     }
 

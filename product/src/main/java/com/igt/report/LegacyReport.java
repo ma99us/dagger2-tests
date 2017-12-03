@@ -1,5 +1,6 @@
 package com.igt.report;
 
+import com.igt.ComponentInjector;
 import com.igt.log.LegacyLogger;
 import com.sun.istack.internal.NotNull;
 import dagger.Module;
@@ -15,8 +16,8 @@ public class LegacyReport {
 
     private static LegacyReport instance;
 
-    public static LegacyReport getInstance(){
-        if(instance == null){
+    public static LegacyReport getInstance() {
+        if (instance == null) {
             instance = new LegacyReport();
         }
         return instance;
@@ -25,11 +26,14 @@ public class LegacyReport {
     @Provides
     @NotNull
     @Singleton
-    public LegacyReport provideReport() {
-        return new LegacyReport();
+    public LegacyReport provideInstance() {
+//        return getInstance();
+        LegacyReport self = getInstance();  // or just call constructor here (new LegacyReport();)
+        ComponentInjector.getInjector().inject(self);   // inject itself, to get it's own dependencies. If this class has @Injects itself
+        return self;
     }
 
-    public String getReport(){
+    public String getReport() {
         return "= report on: " + logger.getData();
     }
 }
