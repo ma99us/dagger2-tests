@@ -6,19 +6,23 @@ import dagger.Provides;
 
 import javax.inject.Singleton;
 
-
-
+@Module
 public class LegacyLogger {
 
     private static LegacyLogger instance;
-
-    protected LegacyLogger(){}
 
     public static LegacyLogger getInstance(){
         if(instance == null){
             instance = new LegacyLogger();
         }
         return instance;
+    }
+
+    @Provides
+    @NotNull
+    @Singleton
+    public LegacyLogger provideLogger(){
+        return new LegacyLogger();
     }
 
     public String getData(){
