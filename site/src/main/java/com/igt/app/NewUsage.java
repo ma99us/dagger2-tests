@@ -2,22 +2,28 @@ package com.igt.app;
 
 import com.igt.AppComponent;
 import com.igt.ComponentInjector;
+import com.igt.SiteAppComponent;
 import com.igt.log.LegacyLogger;
 import com.igt.log.SiteLogger;
 import com.igt.report.LegacyReport;
 import dagger.Component;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
-
-@Singleton
-@Component(modules = {LegacyLogger.class, LegacyReport.class})  // all global singletons has to be listed in @Component annotation (FIXME: Huge class list?)
-interface SiteAppComponent extends AppComponent {
-    void inject(NewUsage target);
-    // all dependant classes has to have corresponding inject method inside @Component interface (FIXME: Huge number of methods?)
-}
 
 public class NewUsage {
+
+    static {
+        // replace injector builder from 'product' with a modified one from 'site'
+        ComponentInjector.setInjectorBuilder(new ComponentInjector.InjectorBuilder(){
+            @Override
+            public AppComponent buildInjector() {
+                return com.igt.DaggerSiteAppComponent.builder()   // (FIXME: How to make InteliJ to find this class 'DaggerSiteAppComponent' ?)
+                        .legacyLogger(new SiteLogger())     //!!! now we can replace singleton modules here, instead of promoting legacy once !!!
+                        .build();
+            }
+        });
+    }
+
 
     @Inject
     LegacyLogger logger;
@@ -30,12 +36,6 @@ public class NewUsage {
     }
 
     public static void main(String[] args) {
-        //TODO: should be part of some global initialization, called only once.
-//        SiteAppComponent component = DaggerSiteAppComponent.create();
-        SiteAppComponent component = com.igt.app.DaggerSiteAppComponent.builder()   // (FIXME: How to make InteliJ to find this class 'DaggerSiteAppComponent' ?)
-                .legacyLogger(new SiteLogger())     // replace singleton module
-                .build();
-        ComponentInjector.setInjector(component);
 
         // create instances of classes and inject them into ObjectGraph to match with dependencies
         NewUsage app = new NewUsage();
