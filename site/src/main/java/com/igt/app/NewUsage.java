@@ -7,8 +7,6 @@ import com.igt.log.SiteLogModule;
 import com.igt.report.LegacyReport;
 import com.igt.report.ReportModule;
 import dagger.Component;
-import dagger.Module;
-import dagger.Provides;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
