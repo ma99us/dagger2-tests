@@ -2,7 +2,6 @@ package com.igt.report;
 
 import com.igt.ComponentInjector;
 import com.igt.log.LegacyLogger;
-import com.sun.istack.internal.NotNull;
 import dagger.Module;
 import dagger.Provides;
 
@@ -24,7 +23,6 @@ public class LegacyReport {
     }
 
     @Provides
-    @NotNull
     @Singleton
     public LegacyReport provideInstance() {
 //        return getInstance();

@@ -1,6 +1,5 @@
 package com.igt.log;
 
-import com.sun.istack.internal.NotNull;
 import dagger.Module;
 import dagger.Provides;
 
@@ -19,7 +18,6 @@ public class LegacyLogger {
     }
 
     @Provides
-    @NotNull
     @Singleton
     public LegacyLogger provideInstance(){
         return getInstance();
