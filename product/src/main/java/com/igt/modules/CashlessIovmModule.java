@@ -1,4 +1,7 @@
 package com.igt.modules;
 
-public class CashlessIovmModule {
+public class CashlessIovmModule implements IovmModule {
+
+  public CashlessIovmModule() {
+  }
 }

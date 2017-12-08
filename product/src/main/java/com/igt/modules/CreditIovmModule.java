@@ -1,4 +1,7 @@
 package com.igt.modules;
 
-public class CreditIovmModule {
+public class CreditIovmModule implements IovmModule {
+
+  public CreditIovmModule() {
+  }
 }

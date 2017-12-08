@@ -1,4 +1,4 @@
 package com.igt.modules;
 
-public class SiteSpecificIovmModule {
+public class SiteSpecificIovmModule implements IovmModule {
 }
