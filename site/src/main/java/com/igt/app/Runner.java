@@ -8,6 +8,22 @@ import java.util.Set;
 public class Runner {
 
   public static void main(String[] args) {
+    System.out.println("-----------------------------------");
+    System.out.println("");
+
+    printModulesDirectlyFromIovmService();
+
+    System.out.println("");
+    System.out.println("-----------------------------------");
+    System.out.println("");
+
+    printModulesFromStatusService();
+
+    System.out.println("");
+    System.out.println("-----------------------------------");
+  }
+
+  private static void printModulesDirectlyFromIovmService() {
     IovmService iovmService = IovmService.getInstance();
 
     if (iovmService == null) {
@@ -24,15 +40,12 @@ public class Runner {
     for(String moduleName : iovmModulesNames) {
       System.out.println(moduleName);
     }
-
-    System.out.println("-----------------------------------");
-    System.out.println("");
-
-    StatusService statusService = StatusService.getInstance();
-    System.out.println("## IovmService modules");
-    statusService.printModules();
-
-    System.out.println("-----------------------------------");
-    System.out.println("");
   }
+
+  private static void printModulesFromStatusService() {
+    StatusService statusService = StatusService.getInstance();
+    System.out.println("## StatusService modules");
+    statusService.printModules();
+  }
+
 }
