@@ -17,7 +17,16 @@
             <artifactId>product</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-    </dependencies>
 
+        <dependency>
+            <groupId>com.google.dagger</groupId>
+            <artifactId>dagger</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.dagger</groupId>
+            <artifactId>dagger-compiler</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
