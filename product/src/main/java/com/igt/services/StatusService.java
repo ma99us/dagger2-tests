@@ -25,13 +25,13 @@ public class StatusService {
       throw new RuntimeException("iovmService is null");
     }
 
-    Set<String> iovmModulesNames = iovmService.getModulesNames();
+    Set<Class> iovmModulesNames = iovmService.getModulesClasses();
 
     if (iovmModulesNames == null) {
       throw new RuntimeException("iovmModulesNames is null");
     }
 
-    for(String moduleName : iovmModulesNames) {
+    for(Class moduleName : iovmModulesNames) {
       System.out.println(moduleName);
     }
   }
