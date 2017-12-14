@@ -1,11 +1,14 @@
 package com.igt;
 
 
+import com.igt.services.SiteIovmService;
 import dagger.Component;
 
 import javax.inject.Singleton;
 
 @Component(modules = SiteIovmDaggerModule.class)
 @Singleton
-interface SiteIovmComponent extends IovmComponent{
+public interface SiteIovmComponent extends IovmComponent{
+    @Singleton
+    SiteIovmService siteIovmService();
 }

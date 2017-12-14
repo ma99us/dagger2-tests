@@ -6,6 +6,7 @@ import com.igt.modules.IovmModule;
 import com.igt.modules.SiteSpecificIovmModule;
 import dagger.Module;
 import dagger.Provides;
+import dagger.multibindings.ClassKey;
 import dagger.multibindings.IntoMap;
 import dagger.multibindings.StringKey;
 
@@ -13,20 +14,20 @@ import dagger.multibindings.StringKey;
 public class SiteIovmDaggerModule {
 
   @Provides @IntoMap
-  @StringKey("cashlessModule")
+  @ClassKey(CashlessIovmModule.class)
   static IovmModule provideCashlessModule() {
     return new CashlessIovmModule();
   }
 
 
   @Provides @IntoMap
-  @StringKey("creditModule")
+  @ClassKey(CreditIovmModule.class)
   static IovmModule provideCreditModule() {
     return new CreditIovmModule();
   }
 
   @Provides @IntoMap
-  @StringKey("siteSpecificModule")
+  @ClassKey(SiteSpecificIovmModule.class)
   static IovmModule provideSiteSpecificModule() {
     return new SiteSpecificIovmModule();
   }

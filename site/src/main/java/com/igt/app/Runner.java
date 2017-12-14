@@ -1,6 +1,7 @@
 package com.igt.app;
 
 import com.igt.services.IovmService;
+import com.igt.services.SiteIovmService;
 import com.igt.services.StatusService;
 
 import java.util.Set;
@@ -24,20 +25,20 @@ public class Runner {
   }
 
   private static void printModulesDirectlyFromIovmService() {
-    IovmService iovmService = IovmService.getInstance();
+    SiteIovmService iovmService = SiteIovmService.getInstance();
 
     if (iovmService == null) {
-      throw new RuntimeException("iovmService is null");
+      throw new RuntimeException("SiteIovmService is null");
     }
 
-    Set<String> iovmModulesNames = iovmService.getModulesNames();
+    Set<Class> iovmModulesNames = iovmService.getModulesClasses();
 
     if (iovmModulesNames == null) {
       throw new RuntimeException("iovmModulesNames is null");
     }
 
-    System.out.println("## IovmService modules");
-    for(String moduleName : iovmModulesNames) {
+    System.out.println("## SiteIovmService modules");
+    for(Class moduleName : iovmModulesNames) {
       System.out.println(moduleName);
     }
   }
